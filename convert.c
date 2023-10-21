@@ -1,5 +1,6 @@
 #include "main.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 
 /**
@@ -9,17 +10,17 @@
  *
  *Return: Number array
  */
-unsigned long long int *parse(char *str, unsigned long long int *numCount)
+unsigned long long *parse(char *str, unsigned long long *numCount)
 {
-	unsigned long long int *num = (unsigned long long int *)
-		malloc(BUFFER_SIZE * sizeof(unsigned long long int));
-	unsigned long long int i = 0;
+	unsigned long long *num = (unsigned long long *)
+		malloc(BUFFER_SIZE * sizeof(unsigned long long));
+	unsigned long long i = 0;
 	char *token = NULL, *endptr;
 
 	token = strtok(str, "\n");
 	while (token != NULL && i < BUFFER_SIZE)
 	{
-		num[i] = strtoll(token, &endptr, 10);
+		num[i] = strtoull(token, &endptr, 10);
 		token = strtok(NULL, "\n");
 		i++;
 	}
@@ -34,10 +35,10 @@ unsigned long long int *parse(char *str, unsigned long long int *numCount)
  *
  *
  */
-void print_factors(unsigned long long int *numArray,
-		unsigned long long int arrLen)
+void print_factors(unsigned long long *numArray,
+		unsigned long long arrLen)
 {
-	unsigned long long int i, j;
+	unsigned long long i, j;
 
 	for (i = 0; i < arrLen; i++)
 	{
@@ -45,7 +46,7 @@ void print_factors(unsigned long long int *numArray,
 		{
 			if (is_factor(numArray[i], j))
 			{
-				printf("%lld=%lld*%lld\n", numArray[i], j, (numArray[i] / j));
+				printf("%llu=%llu*%llu\n", numArray[i], j, (numArray[i] / j));
 				break;
 			}
 		}
