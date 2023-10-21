@@ -32,8 +32,8 @@ try:
                 print(f"Skipping invalid line: {line}")
 
     for number in numbers:
-        if is_prime(number):
-            continue
+       # if is_prime(number):
+        #    continue
         for j in range(2, (number // 2) + 2):
             if is_factor(number, j):
                 print(f"{number}={j}*{number // j}")
