@@ -9,10 +9,11 @@
  *
  *Return: Number array
  */
-long long int *parse(char *str, long long int *numCount)
+unsigned long long int *parse(char *str, unsigned long long int *numCount)
 {
-	long long int *num = (long long int *)malloc(BUFFER_SIZE * sizeof(long long int));
-	long long int i = 0;
+	unsigned long long int *num = (unsigned long long int *)
+		malloc(BUFFER_SIZE * sizeof(unsigned long long int));
+	unsigned long long int i = 0;
 	char *token = NULL, *endptr;
 
 	token = strtok(str, "\n");
@@ -33,9 +34,10 @@ long long int *parse(char *str, long long int *numCount)
  *
  *
  */
-void print_factors(long long int *numArray, long long int arrLen)
+void print_factors(unsigned long long int *numArray,
+		unsigned long long int arrLen)
 {
-	long long int i, j;
+	unsigned long long int i, j;
 
 	for (i = 0; i < arrLen; i++)
 	{

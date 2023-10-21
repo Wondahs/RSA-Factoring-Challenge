@@ -6,9 +6,9 @@
  *
  *Return: 1 if prime, 0 if not.
  */
-int is_prime(long long int n)
+int is_prime(unsigned long long int n)
 {
-	long long int i;
+	unsigned long long int i;
 
 	for (i = 2; i < (n / 2) + 1; i++)
 	{
@@ -25,7 +25,7 @@ int is_prime(long long int n)
  *
  *Return: 1 if yes, 0 if no
  */
-int is_factor(long long int num, long long int factor)
+int is_factor(unsigned long long int num, unsigned long long int factor)
 {
 	if (num % factor == 0)
 		return (1);

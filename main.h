@@ -10,10 +10,11 @@
 
 #define BUFFER_SIZE 8096
 
-int is_prime(long long int n);
-int is_factor(long long int num, long long int factor);
-long long int *parse(char *str, long long int *numCount);
-void print_factors(long long int *numArray, long long int arrLen);
+int is_prime(unsigned long long int n);
+int is_factor(unsigned long long int num, unsigned long long int factor);
+unsigned long long int *parse(char *str, unsigned long long int *numCount);
+void print_factors(unsigned long long int *numArray,
+		unsigned long long int arrLen);
 
 
 #endif /* FACTOR_H */
