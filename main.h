@@ -8,7 +8,7 @@
 #include <fcntl.h>
 #include <string.h>
 
-#define BUFFER_SIZE 1024
+#define BUFFER_SIZE 8096
 
 int is_prime(long long int n);
 int is_factor(long long int num, long long int factor);

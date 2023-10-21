@@ -39,7 +39,7 @@ void print_factors(long long int *numArray, long long int arrLen)
 
 	for (i = 0; i < arrLen; i++)
 	{
-		for (j = 2; j < numArray[i]; j++)
+		for (j = 2; j < (numArray[i] / 2) + 1; j++)
 		{
 			if (is_factor(numArray[i], j))
 			{
