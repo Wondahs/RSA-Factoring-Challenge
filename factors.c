@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
 
 	while (1)
 	{
-		int *numArray, numCount;
+		long long int *numArray, numCount;
 
 		bytesRead = read(file, buffer, BUFFER_SIZE);
 		written += bytesRead;

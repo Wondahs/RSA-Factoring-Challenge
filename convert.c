@@ -9,16 +9,16 @@
  *
  *Return: Number array
  */
-int *parse(char *str, int *numCount)
+long long int *parse(char *str, long long int *numCount)
 {
-	int *num = (int *)malloc(BUFFER_SIZE * sizeof(int));
-	int i = 0;
-	char *token = NULL;
+	long long int *num = (long long int *)malloc(BUFFER_SIZE * sizeof(long long int));
+	long long int i = 0;
+	char *token = NULL, *endptr;
 
 	token = strtok(str, "\n");
 	while (token != NULL && i < BUFFER_SIZE)
 	{
-		num[i] = atoi(token);
+		num[i] = strtoll(token, &endptr, 10);
 		token = strtok(NULL, "\n");
 		i++;
 	}
@@ -33,17 +33,17 @@ int *parse(char *str, int *numCount)
  *
  *
  */
-void print_factors(int *numArray, int arrLen)
+void print_factors(long long int *numArray, long long int arrLen)
 {
-	int i, j;
+	long long int i, j;
 
 	for (i = 0; i < arrLen; i++)
 	{
-		for (j = 2; j <= numArray[i] / 2; j++)
+		for (j = 2; j < numArray[i]; j++)
 		{
 			if (is_factor(numArray[i], j))
 			{
-				printf("%d=%d*%d\n", numArray[i], j, (numArray[i] / j));
+				printf("%lld=%lld*%lld\n", numArray[i], j, (numArray[i] / j));
 				break;
 			}
 		}
