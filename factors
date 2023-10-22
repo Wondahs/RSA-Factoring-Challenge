@@ -21,6 +21,7 @@ def check_number(n):
         if n % i == 0:
             print(f"{n}={i}*{n//i}")
             return
+    print(f"{n}={1}*{n}")
 
 
 if len(sys.argv) != 2:
