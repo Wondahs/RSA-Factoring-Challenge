@@ -24,11 +24,11 @@ unsigned long long *parse(char *str, unsigned long long *numCount)
 		num[i] = strtoull(token, &endptr, 10);
 		if (num[i] >= ULLONG_MAX - 1)
 		{
-			char num[1024];
+			char cmd[1024];
 
-			strcpy(num, "factor ");
-			strcat(num, token);
-			call_shell(num);
+			strcpy(cmd, "factor ");
+			strcat(cmd, token);
+			call_shell(cmd);
 			continue;
 		}
 		token = strtok(NULL, "\n");
