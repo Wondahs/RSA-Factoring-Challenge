@@ -19,9 +19,9 @@ def is_prime(num):
 def check_number(n):
     for i in range(2, int(n**0.5) + 1):
         if n % i == 0:
-            print(f"{n}={i}*{n//i}")
+            print(f"{n}={n/i}*{i}")
             return
-    print(f"{n}={1}*{n}")
+    print(f"{n}={n}*{1}")
 
 
 if len(sys.argv) != 2:
