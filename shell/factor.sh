@@ -18,7 +18,7 @@ factor()
 	local num=$1
 	local i=2
 	local root=$(echo "sqrt($num)" | bc)
-	while [ $((i < (root + 2))) -eq 1 ]; do
+	while [[ $(echo "$i < ($root + 2)" | bc) -eq 1 ]]; do
 		if [ $(echo "$num % $i" | bc) -eq 0 ]; then
 			fact=$(echo "$num / $i" | bc)
 			echo "$num=$i*$fact"
