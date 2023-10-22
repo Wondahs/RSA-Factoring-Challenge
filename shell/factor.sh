@@ -13,22 +13,15 @@ if [ ! -f "$file_name" ]; then
 fi
 
 # Define the factor function
-factor()
+factorize()
 {
-	local num=$1
-	local i=2
-	local root=$(echo "sqrt($num)" | bc)
-	while [[ $(echo "$i < ($root + 2)" | bc) -eq 1 ]]; do
-		if [ $(echo "$num % $i" | bc) -eq 0 ]; then
-			fact=$(echo "$num / $i" | bc)
-			echo "$num=$i*$fact"
-			return
-		else
-			i=$((i + 1))
-		fi
-	done
+	local num=$(echo "$1" | tr -d ':')
+	local fact="$2"
+	local prime=$(echo "$num / $fact" | bc)
+	echo "$num=$prime*$fact"
 }
 
 while IFS= read -r line; do
-	factor "$line"
+	result=$(factor $line)
+	factorize $result
 done < "$file_name"

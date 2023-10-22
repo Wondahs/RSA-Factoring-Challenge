@@ -1,20 +1,27 @@
-#!/bin/bash
-#!/bin/bash
+#!/usr/bin/env bash
 
-# List of GitHub URLs for the files you need to download
-file_urls=(
-    "https://raw.githubusercontent.com/Wondahs/RSA-Factoring-Challenge/main/c_function.c"
+if [ $# -ne 1 ]; then
+	echo "Usage: $0 <file>"
+	exit 1
+fi
 
-    "https://raw.githubusercontent.com/Wondahs/RSA-Factoring-Challenge/main/python/factors.py"
-)
+file_name="$1"
 
-# Loop through the URLs and use curl to download each file
-for url in "${file_urls[@]}"; do
-    curl -O -L -s "$url"
-done
+if [ ! -f "$file_name" ]; then
+	echo "File '$file_name' does not exist"
+	exit 1
+fi
 
-chmod +x factors.py
-gcc -shared c_function.c -o my_library.so
+# Define the factor function
+factorize()
+{
+	local num=$(echo "$1" | tr -d ':')
+	local fact="$2"
+	local prime=$(echo "$num / $fact" | bc)
+	echo "$num=$prime*$fact"
+}
 
-export LD_LIBRARY_PATH="."
-./factors.py $1
+while IFS= read -r line; do
+	result=$(factor $line)
+	factorize $result
+done < "$file_name"
