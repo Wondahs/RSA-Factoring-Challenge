@@ -22,7 +22,7 @@ unsigned long long *parse(char *str, unsigned long long *numCount)
 	while (token != NULL && i < BUFFER_SIZE)
 	{
 		num[i] = strtoull(token, &endptr, 10);
-		if (num[i] >= ULLONG_MAX - 1)
+		if (num[i] >= ULLONG_MAX - 1000)
 		{
 			char *cmd = malloc(strlen(token) + strlen("factor ") + 2);
 

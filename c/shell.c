@@ -22,9 +22,10 @@ void call_shell(char *str)
 				"  local fact=\"$2\"\n"
 				"  local prime=$(echo \"$num / $fact\" | bc)\n"
 				"  echo \"$num=$prime*$fact\"\n"
+				"  exit 0\n"
 				"}\n"
-				"result=$(factor $0)"
-				"factorize $result"
+				"result=$(factor $0)\n"
+				"factorize $result\n"
 		, NULL, NULL};
 		cmds[3] = str;
 
