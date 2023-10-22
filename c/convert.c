@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <limits.h>
 
 /**
  *parse - Copies and converts string into number array
@@ -21,6 +22,15 @@ unsigned long long *parse(char *str, unsigned long long *numCount)
 	while (token != NULL && i < BUFFER_SIZE)
 	{
 		num[i] = strtoull(token, &endptr, 10);
+		if (num[i] >= ULLONG_MAX - 1)
+		{
+			char num[1024];
+
+			strcpy(num, "factor ");
+			strcat(num, token);
+			call_shell(num);
+			continue;
+		}
 		token = strtok(NULL, "\n");
 		i++;
 	}
