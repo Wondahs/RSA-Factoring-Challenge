@@ -63,5 +63,6 @@ void print_factors(unsigned long long *numArray,
 				break;
 			}
 		}
+		printf("%llu=1*%llu\n", numArray[i], numArray[i]);
 	}
 }
