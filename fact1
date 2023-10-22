@@ -1,0 +1,4 @@
+#!/bin/bash
+gcc -shared -o my_library.so c_function.c
+export LD_LIBRARY_PATH="."
+./factors.py $1
