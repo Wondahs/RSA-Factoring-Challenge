@@ -26,8 +26,7 @@ unsigned long long *parse(char *str, unsigned long long *numCount)
 		{
 			char *cmd = malloc(strlen(token) + strlen("factor ") + 2);
 
-			strcpy(cmd, "factor ");
-			strcat(cmd, token);
+			strcpy(cmd, token);
 			call_shell(cmd);
 			free(cmd);
 			continue;

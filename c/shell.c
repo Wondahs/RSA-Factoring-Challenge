@@ -23,9 +23,10 @@ void call_shell(char *str)
 				"  local prime=$(echo \"$num / $fact\" | bc)\n"
 				"  echo \"$num=$prime*$fact\"\n"
 				"}\n"
-				"factorize $0"
-		};
-		cmds[2] = str;
+				"result=$(factor $0)"
+				"factorize $result"
+		, NULL, NULL};
+		cmds[3] = str;
 
 		execvp(cmds[0], cmds);
 
