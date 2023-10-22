@@ -33,9 +33,6 @@ void call_shell(char *str)
 
 		perror("execve");
 	}
-	else
-	{
-		int status;
-		wait(&status); // Wait for the child process to complete
-	}
+	int status;
+	wait(&status); // Wait for the child process to complete
 }

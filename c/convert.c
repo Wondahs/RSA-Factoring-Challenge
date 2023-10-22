@@ -21,18 +21,21 @@ unsigned long long *parse(char *str, unsigned long long *numCount)
 	token = strtok(str, "\n");
 	while (token != NULL && i < BUFFER_SIZE)
 	{
-		num[i] = strtoull(token, &endptr, 10);
-		if (num[i] >= ULLONG_MAX - 1000)
+		if (strtoull(token, &endptr, 10) >= ULLONG_MAX - 1000)
 		{
 			char *cmd = malloc(strlen(token) + strlen("factor ") + 2);
 
 			strcpy(cmd, token);
 			call_shell(cmd);
 			free(cmd);
-			continue;
+			token = strtok(NULL, "\n");
 		}
-		token = strtok(NULL, "\n");
-		i++;
+		else
+		{
+			num[i] = strtoull(token, &endptr, 10);
+			token = strtok(NULL, "\n");
+			i++;
+		}
 	}
 	*numCount = i;
 	return (num);
