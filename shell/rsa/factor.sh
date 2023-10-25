@@ -17,7 +17,7 @@ check_prime()
 {
 	local num=$1
 	local root=$(echo "sqrt($num) + 1" | bc)
-	for number in {2..$root}; do
+	for ((number = 2; number <= root; number++)); do
 		if [ ! $(echo "$num % $number" | bc) ]; then
 			return 1
 		fi
@@ -30,9 +30,10 @@ check_prime()
 factorize()
 {
 	local num=$(echo "$1" | tr -d ':')
-	local index=1
+	local index=2
 	for ((i = index; i < $#; i++)); do
-		if [ "$(check_prime ${!i})" -eq 0 ]; then
+		value=$(check_prime ${!i})
+		if [ $value -eq 0 ]; then
 			echo "${!i}"
 			prime=$(echo "$num / ${!i}" | bc)
 			if [ ! check_prime $prime ]; then
