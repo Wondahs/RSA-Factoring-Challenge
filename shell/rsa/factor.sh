@@ -15,14 +15,19 @@ fi
 # Check if num is prime
 check_prime()
 {
+	isprime=1
 	local num=$1
 	local root=$(echo "sqrt($num) + 1" | bc)
+	if [ $num -eq 2 ]; then
+		return $isprime
+	fi
 	for ((number = 2; number <= root; number++)); do
-		if [ ! $(echo "$num % $number" | bc) ]; then
-			return 1
+		if [ $(echo "$num % $number" | bc) -eq 0 ]; then
+			isprime=0
+			return $isprime
 		fi
 	done
-	return 0
+	return $isprime
 }
 
 
@@ -32,11 +37,14 @@ factorize()
 	local num=$(echo "$1" | tr -d ':')
 	local index=2
 	for ((i = index; i < $#; i++)); do
-		value=$(check_prime ${!i})
-		if [ $value -eq 0 ]; then
+		check_prime ${!i}
+		value=$?
+		if [ $value -eq 1 ]; then
 			echo "${!i}"
 			prime=$(echo "$num / ${!i}" | bc)
-			if [ ! check_prime $prime ]; then
+			check_prime $prime
+			prime_true=$?
+			if [ $prime_true -eq 1 ]; then
 
 				echo "$num=$prime*${!i}"
 				return;
