@@ -55,9 +55,7 @@ void check_primes(unsigned long long num)
 
 	root = (unsigned long long) sqrt((double) num) + 1;
 	limit = (float)(root) / num;
-	printf("limit is %f\n", limit);
 	result = limit * num;
-	printf("limit is %llu\n", result);
 
 	for (j = 2; j < result + 1; j++)
 	{
