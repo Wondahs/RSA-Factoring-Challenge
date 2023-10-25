@@ -8,9 +8,14 @@
  */
 int is_prime(unsigned long long int n)
 {
-	unsigned long long int i;
+	unsigned long long int i, root, result;
+	double limit;
 
-	for (i = 2; i < (n / 2) + 1; i++)
+	root = (unsigned long long) sqrt((double) n) + 1;
+	limit = (float)(root) / n;
+	result = limit * n;
+
+	for (i = 2; i < result + 1; i++)
 	{
 		if ((n % i) == 0)
 			return (0);
