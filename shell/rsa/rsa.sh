@@ -1,3 +1,4 @@
+#!/bin/bash
 #!/usr/bin/env bash
 
 if [ $# -ne 1 ]; then
@@ -17,35 +18,30 @@ check_prime()
 {
 	local num=$1
 	local root=$(echo "sqrt($num) + 1" | bc)
-	for number in {2..$root}; do
-		if [ ! $(echo "$num % $number" | bc) ]; then
+	for ((number = 2; number < root; number++)); do
+		if [ $(echo "$num % $number" | bc) -eq 0 ]; then
 			return 1
 		fi
 	done
 	return 0
 }
 
-
 # Define the factor function
 factorize()
 {
 	local num=$(echo "$1" | tr -d ':')
 	local index=1
-	for ((i = index; i < $#; i++)); do
-		if [ "$(check_prime ${!i})" -eq 0 ]; then
-			echo "${!i}"
-			prime=$(echo "$num / ${!i}" | bc)
-			if [ ! check_prime $prime ]; then
-
-				echo "$num=$prime*${!i}"
-				return;
+	for ((i = index; i <= num; i++)); do
+		if check_prime $i; then
+			prime=$((num / i))
+			if check_prime $prime; then
+				echo "$num=$prime*$i"
+				return
 			fi
 		fi
 	done
-	echo "No primes"
 }
 
 while IFS= read -r line; do
-	result=$(factor $line)
-	factorize $result
+	result=$(factorize $line)
 done < "$file_name"
