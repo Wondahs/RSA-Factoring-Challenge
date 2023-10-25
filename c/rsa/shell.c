@@ -19,7 +19,7 @@ void call_shell(char *str)
 			"bash", "-c",
 			"factorize() {\n"
 				"  local num=$(echo \"$1\" | tr -d ':')\n"
-				"  if [ $# -eq 3 ]; then\"\n"
+				"  if [ $# -eq 3 ]; then\n"
 				"  	fact=$2\n"
 				"	prime=$3\n"
 				"  	echo \"$num=$prime*$fact\"\n"
